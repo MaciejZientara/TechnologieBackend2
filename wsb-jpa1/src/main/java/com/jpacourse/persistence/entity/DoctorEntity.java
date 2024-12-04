@@ -31,7 +31,6 @@ public class DoctorEntity {
 	private Specialization specialization;
 
 	//	relacje dwustronne - adres wie kto pod nim mieszka i osoby wiedzą gdzie mieszkają
-	@Column(nullable = false)
 	@ManyToOne(optional = false)
 	private AddressEntity address;
 
