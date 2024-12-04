@@ -1,10 +1,7 @@
 package com.jpacourse.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "ADDRESS")
@@ -21,6 +18,13 @@ public class AddressEntity {
 	private String addressLine2;
 
 	private String postalCode;
+
+	//	relacje dwustronne - adres wie kto pod nim mieszka i osoby wiedzą gdzie mieszkają
+	@OneToMany
+	private Collection<DoctorEntity> doctorResidents;
+
+	@OneToMany
+	private Collection<PatientEntity> patientResidents;
 
 	public Long getId() {
 		return id;
@@ -62,4 +66,19 @@ public class AddressEntity {
 		this.postalCode = postalCode;
 	}
 
+	public Collection<PatientEntity> getPatientResidents() {
+		return patientResidents;
+	}
+
+	public void setPatientResidents(Collection<PatientEntity> patientResidents) {
+		this.patientResidents = patientResidents;
+	}
+
+	public Collection<DoctorEntity> getDoctorResidents() {
+		return doctorResidents;
+	}
+
+	public void setDoctorResidents(Collection<DoctorEntity> doctorResidents) {
+		this.doctorResidents = doctorResidents;
+	}
 }
