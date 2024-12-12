@@ -3,6 +3,7 @@ package com.jpacourse.persistence.entity;
 import com.jpacourse.persistence.enums.Specialization;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "DOCTOR")
@@ -30,8 +31,13 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	//	relacje dwustronne - adres wie kto pod nim mieszka i osoby wiedzą gdzie mieszkają
-	@ManyToOne(optional = false)
+	//  relacja dwustronna
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "DOCTOR_ID")
+	private Collection<VisitEntity> visits;
+
+	//	relacje jednostronna - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają
+	@OneToOne(optional = false)
 	private AddressEntity address;
 
 	public Long getId() {
@@ -96,5 +102,13 @@ public class DoctorEntity {
 
 	public void setAddress(AddressEntity address) {
 		this.address = address;
+	}
+
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(Collection<VisitEntity> visits) {
+		this.visits = visits;
 	}
 }

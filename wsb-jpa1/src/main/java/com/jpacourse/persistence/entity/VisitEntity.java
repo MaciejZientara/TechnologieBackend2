@@ -18,16 +18,18 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
-	// relacje jednostronne - wizyta zna lekarza i pacjenta, pacjent i lekarz nie znają wszystkich swoich wizyt
+	//  relacja dwustronna
 	@ManyToOne
 	private DoctorEntity doctor;
 
+	//  relacja dwustronna
 	@ManyToOne
 	private PatientEntity patient;
 
-	// relacja dwustronna - wizyta wie jakie recepty wypisała (rezultat wizyty),
-	// 						recepta wie z jakiej wizyty pochodzi (ma informacje o dacie, pacjencie i lekarzu)
-	@OneToMany
+	// relacja dwustronna - zabieg wie z jakiej wizyty pochodzi,
+	// ale wizyta nie zna wszystkich zabiegów
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "VISIT_ID")
 	private Collection<MedicalTreatmentEntity> treatments;
 
 	public Long getId() {

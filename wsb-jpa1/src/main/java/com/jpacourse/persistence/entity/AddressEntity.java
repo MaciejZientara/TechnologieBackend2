@@ -19,12 +19,14 @@ public class AddressEntity {
 
 	private String postalCode;
 
-	//	relacje dwustronne - adres wie kto pod nim mieszka i osoby wiedzą gdzie mieszkają
-	@OneToMany
-	private Collection<DoctorEntity> doctorResidents;
+	//	relacje jednostronne - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają
+	//  jednostronne ponieważ użyto mappedBy dla OneToOne - tylko pomoc dla kompilatora,
+	//  tych zmiennych tu "nie powinno być"
+	@OneToOne(mappedBy = "address")
+	private DoctorEntity doctorResident;
 
-	@OneToMany
-	private Collection<PatientEntity> patientResidents;
+	@OneToOne(mappedBy = "address")
+	private PatientEntity patientResident;
 
 	public Long getId() {
 		return id;
@@ -66,19 +68,20 @@ public class AddressEntity {
 		this.postalCode = postalCode;
 	}
 
-	public Collection<PatientEntity> getPatientResidents() {
-		return patientResidents;
+
+	public DoctorEntity getDoctorResident() {
+		return doctorResident;
 	}
 
-	public void setPatientResidents(Collection<PatientEntity> patientResidents) {
-		this.patientResidents = patientResidents;
+	public void setDoctorResident(DoctorEntity doctorResident) {
+		this.doctorResident = doctorResident;
 	}
 
-	public Collection<DoctorEntity> getDoctorResidents() {
-		return doctorResidents;
+	public PatientEntity getPatientResident() {
+		return patientResident;
 	}
 
-	public void setDoctorResidents(Collection<DoctorEntity> doctorResidents) {
-		this.doctorResidents = doctorResidents;
+	public void setPatientResident(PatientEntity patientResident) {
+		this.patientResident = patientResident;
 	}
 }

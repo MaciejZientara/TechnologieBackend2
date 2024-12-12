@@ -18,8 +18,8 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
-	// relacja dwustronna - wizyta wie jakie recepty wypisała (rezultat wizyty),
-	// 						recepta wie z jakiej wizyty pochodzi (ma informacje o dacie, pacjencie i lekarzu)
+	// relacja dwustronna - zabieg wie z jakiej wizyty pochodzi,
+	// ale wizyta nie zna wszystkich zabiegów
 	@ManyToOne
 	private VisitEntity visit;
 
