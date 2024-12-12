@@ -30,17 +30,6 @@ insert into doctor (id, doctor_number, email, first_name, last_name, specializat
 insert into doctor (id, doctor_number, email, first_name, last_name, specialization, telephone_number, address_id) values (9, 'DOC1009', 'william.lee@example.com', 'William', 'Lee', 'GP', '+48123456709', 9);
 insert into doctor (id, doctor_number, email, first_name, last_name, specialization, telephone_number, address_id) values (10, 'DOC1010', 'chloe.harris@example.com', 'Chloe', 'Harris', 'DERMATOLOGIST', '+48123456710', 10);
 
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (1,  1);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (2,  2);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (3,  3);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (4,  4);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (5,  5);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (6,  6);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (7,  7);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (8,  8);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (9,  9);
-insert into ADDRESS_DOCTOR_RESIDENTS (ADDRESS_ENTITY_ID, DOCTOR_RESIDENTS_ID) values (10, 10);
-
 insert into patient (id, patient_number, date_of_birth, email, first_name, last_name, telephone_number, address_id) values (1, 'PAT1001', '1985-03-25', 'adam.nowak@example.com', 'Adam', 'Nowak', '+48123456781', 11);
 insert into patient (id, patient_number, date_of_birth, email, first_name, last_name, telephone_number, address_id) values (2, 'PAT1002', '1992-07-14', 'ewa.kowalska@example.com', 'Ewa', 'Kowalska', '+48123456782', 12);
 insert into patient (id, patient_number, date_of_birth, email, first_name, last_name, telephone_number, address_id) values (3, 'PAT1003', '1978-11-02', 'marek.wisniewski@example.com', 'Marek', 'Wiśniewski', '+48123456783', 13);
@@ -61,27 +50,6 @@ insert into patient (id, patient_number, date_of_birth, email, first_name, last_
 insert into patient (id, patient_number, date_of_birth, email, first_name, last_name, telephone_number, address_id) values (18, 'PAT1018', '1984-09-06', 'marta.mucha@example.com', 'Marta', 'Mucha', '+48123456798', 18);
 insert into patient (id, patient_number, date_of_birth, email, first_name, last_name, telephone_number, address_id) values (19, 'PAT1019', '1977-01-15', 'damian.rozalski@example.com', 'Damian', 'Różański', '+48123456799', 19);
 insert into patient (id, patient_number, date_of_birth, email, first_name, last_name, telephone_number, address_id) values (20, 'PAT1020', '2003-12-02', 'alicja.jedrzejewska@example.com', 'Alicja', 'Jędrzejewska', '+48123456800', 20);
-
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (11, 1);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (12, 2);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (13, 3);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (14, 4);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (15, 5);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (16, 6);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (17, 7);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (18, 8);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (19, 9);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (20, 10);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (11, 11);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (12, 12);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (13, 13);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (14, 14);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (15, 15);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (16, 16);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (17, 17);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (18, 18);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (19, 19);
-insert into ADDRESS_PATIENT_RESIDENTS (ADDRESS_ENTITY_ID, PATIENT_RESIDENTS_ID) values (20, 20);
 
 insert into visit (id, description, time, doctor_id, patient_id) values (1, 'Routine checkup', '2024-12-05 09:00:00', 1, 1);
 insert into visit (id, description, time, doctor_id, patient_id) values (2, 'Follow-up appointment', '2024-12-05 09:30:00', 2, 2);
@@ -149,20 +117,3 @@ insert into medical_treatment (id, description, type, visit_id) values (12, '24-
 insert into medical_treatment (id, description, type, visit_id) values (13, 'Ultrasound of the liver', 'USG', 42);
 insert into medical_treatment (id, description, type, visit_id) values (14, 'Chest X-ray for tuberculosis check', 'RTG', 49);
 insert into medical_treatment (id, description, type, visit_id) values (15, 'Baseline electrocardiogram', 'EKG', 7);
-
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (7,  1);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (14, 2);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (21, 3);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (28, 4);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (35, 5);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (42, 6);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (49, 7);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (7,  8);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (14, 9);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (21, 10);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (28, 11);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (35, 12);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (42, 13);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (49, 14);
-insert into VISIT_TREATMENTS (VISIT_ENTITY_ID, TREATMENTS_ID) values (7,  15);
-
