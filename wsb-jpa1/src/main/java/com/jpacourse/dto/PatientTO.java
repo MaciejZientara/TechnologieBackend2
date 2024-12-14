@@ -2,6 +2,7 @@ package com.jpacourse.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public class PatientTO  implements Serializable
 {
@@ -18,6 +19,16 @@ public class PatientTO  implements Serializable
     private String patientNumber;
 
     private LocalDate dateOfBirth;
+
+    private List<PatientsVisitTO> visits;
+
+    public List<PatientsVisitTO> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<PatientsVisitTO> visits) {
+        this.visits = visits;
+    }
 
     public Long getId() {
         return id;
