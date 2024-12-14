@@ -1,5 +1,7 @@
 package com.jpacourse.persistence.entity;
 
+import com.jpacourse.persistence.enums.Gender;
+
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -30,6 +32,10 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
 
 	//  relacja dwustronna
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -110,5 +116,13 @@ public class PatientEntity {
 
 	public void setVisits(Collection<VisitEntity> visits) {
 		this.visits = visits;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 }
