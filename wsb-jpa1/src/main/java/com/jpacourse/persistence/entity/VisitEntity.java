@@ -13,6 +13,7 @@ public class VisitEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String description;
 
 	@Column(nullable = false)

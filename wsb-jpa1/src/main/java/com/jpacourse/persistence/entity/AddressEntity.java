@@ -11,12 +11,16 @@ public class AddressEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String city;
 
+	@Column(nullable = false)
 	private String addressLine1;
 
+	@Column(nullable = false)
 	private String addressLine2;
 
+	@Column(nullable = false)
 	private String postalCode;
 
 	//	relacje jednostronne - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają

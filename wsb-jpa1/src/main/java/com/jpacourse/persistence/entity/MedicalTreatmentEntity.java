@@ -15,6 +15,7 @@ public class MedicalTreatmentEntity {
 	@Column(nullable = false)
 	private String description;
 
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
