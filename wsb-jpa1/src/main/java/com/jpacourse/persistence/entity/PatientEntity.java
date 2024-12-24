@@ -4,6 +4,7 @@ import com.jpacourse.persistence.enums.Gender;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -40,7 +41,7 @@ public class PatientEntity {
 	//  relacja dwustronna
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PATIENT_ID")
-	private Collection<VisitEntity> visits;
+	private List<VisitEntity> visits;
 
 	//	relacje jednostronna - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -110,19 +111,19 @@ public class PatientEntity {
 		this.address = address;
 	}
 
-	public Collection<VisitEntity> getVisits() {
-		return visits;
-	}
-
-	public void setVisits(Collection<VisitEntity> visits) {
-		this.visits = visits;
-	}
-
 	public Gender getGender() {
 		return gender;
 	}
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public List<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(List<VisitEntity> visits) {
+		this.visits = visits;
 	}
 }

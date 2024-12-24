@@ -1,5 +1,7 @@
 package com.jpacourse.dto;
 
+import com.jpacourse.persistence.enums.Gender;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -19,6 +21,10 @@ public class PatientTO  implements Serializable
     private String patientNumber;
 
     private LocalDate dateOfBirth;
+
+    private Gender gender;
+
+    private AddressTO address;
 
     private List<PatientsVisitTO> visits;
 
@@ -84,5 +90,21 @@ public class PatientTO  implements Serializable
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public AddressTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressTO address) {
+        this.address = address;
     }
 }
