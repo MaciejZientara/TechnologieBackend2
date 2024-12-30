@@ -39,8 +39,8 @@ public class PatientEntity {
 	private Gender gender;
 
 	//  relacja dwustronna
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "PATIENT_ID")
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+//	@JoinColumn(name = "PATIENT_ID")
 	private List<VisitEntity> visits;
 
 	//	relacje jednostronna - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają

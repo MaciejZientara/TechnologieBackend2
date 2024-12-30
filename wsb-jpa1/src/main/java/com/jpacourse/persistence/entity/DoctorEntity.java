@@ -34,12 +34,12 @@ public class DoctorEntity {
 	private Specialization specialization;
 
 	//  relacja dwustronna
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "DOCTOR_ID")
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+//	@JoinColumn(name = "DOCTOR_ID")
 	private List<VisitEntity> visits;
 
 	//	relacje jednostronna - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają
-	@OneToOne(optional = false)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private AddressEntity address;
 
 	public Long getId() {

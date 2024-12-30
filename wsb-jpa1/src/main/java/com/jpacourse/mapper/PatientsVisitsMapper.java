@@ -33,9 +33,11 @@ public class PatientsVisitsMapper {
     public static List<PatientsVisitTO> mapListToTO(final List<VisitEntity> visits)
     {
         List<PatientsVisitTO> result = new ArrayList<>();
-        for(VisitEntity visit : visits)
-        {
-            result.add(mapToTO(visit));
+        if(visits!=null){
+            for(VisitEntity visit : visits)
+            {
+                result.add(mapToTO(visit));
+            }
         }
         return result;
     }
