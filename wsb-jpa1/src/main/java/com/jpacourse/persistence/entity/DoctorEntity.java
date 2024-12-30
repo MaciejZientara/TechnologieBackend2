@@ -4,6 +4,7 @@ import com.jpacourse.persistence.enums.Specialization;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "DOCTOR")
@@ -35,7 +36,7 @@ public class DoctorEntity {
 	//  relacja dwustronna
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "DOCTOR_ID")
-	private Collection<VisitEntity> visits;
+	private List<VisitEntity> visits;
 
 	//	relacje jednostronna - adres nie wie kto pod nim mieszka, ale osoby wiedzą gdzie mieszkają
 	@OneToOne(optional = false)
@@ -105,11 +106,11 @@ public class DoctorEntity {
 		this.address = address;
 	}
 
-	public Collection<VisitEntity> getVisits() {
+	public List<VisitEntity> getVisits() {
 		return visits;
 	}
 
-	public void setVisits(Collection<VisitEntity> visits) {
+	public void setVisits(List<VisitEntity> visits) {
 		this.visits = visits;
 	}
 }
