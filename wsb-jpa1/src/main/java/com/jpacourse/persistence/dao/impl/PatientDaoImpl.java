@@ -36,5 +36,6 @@ public class PatientDaoImpl  extends AbstractDao<PatientEntity, Long> implements
         }
         result.add(newVisit);
         patient.setVisits(result);
+        update(patient);
     }
 }
