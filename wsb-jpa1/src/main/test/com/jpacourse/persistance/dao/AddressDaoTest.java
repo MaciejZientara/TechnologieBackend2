@@ -22,11 +22,16 @@ public class AddressDaoTest
     @Test
     public void testShouldFindAddressById() {
         // given
+        // use existing data from data.sql
         // when
         AddressEntity addressEntity = addressDao.findOne(1L);
         // then
         assertThat(addressEntity).isNotNull();
-        assertThat(addressEntity.getPostalCode()).isEqualTo("62-030");
+        assertThat(addressEntity.getId()).isEqualTo(1L);
+        assertThat(addressEntity.getCity()).isEqualTo("Warszawa");
+        assertThat(addressEntity.getAddressLine1()).isEqualTo("ulica Dębowa");
+        assertThat(addressEntity.getAddressLine2()).isEqualTo("12A");
+        assertThat(addressEntity.getPostalCode()).isEqualTo("00-001");
     }
 
     @Test
