@@ -97,4 +97,31 @@ public class PatientDaoTest
         assertThat(patients3.get(0).getFirstName()).isEqualTo("Jan");
     }
 
+    @Transactional
+    @Test
+    public void testShouldFindWithMoreVisits() {
+        // given
+        // use existing data from data.sql
+        // Patient Id, VisitCount
+        //      1       4
+        //      2       3
+        //      3       2
+        //      4       3
+        //      5       3
+        //      6       3
+
+        // when
+        final List<PatientEntity> patients4 = patientDao.findWithMoreVisits(4); // should find 1
+        final List<PatientEntity> patients3 = patientDao.findWithMoreVisits(3); // should find 5
+
+        // then
+        assertThat(patients4.size()).isEqualTo(1);
+        assertThat(patients3.size()).isEqualTo(5);
+
+        assertThat(patients4.get(0).getId()).isEqualTo(1L); // only 1 patient with id 1
+
+        assertThat(patients3.stream()
+                .noneMatch(pat -> pat.getId().equals(3L)))
+                .isTrue(); // all patients except with id 3
+    }
 }
