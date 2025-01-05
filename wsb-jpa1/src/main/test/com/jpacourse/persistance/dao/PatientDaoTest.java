@@ -3,6 +3,7 @@ package com.jpacourse.persistance.dao;
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
+import com.jpacourse.persistence.enums.Gender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,5 +124,40 @@ public class PatientDaoTest
         assertThat(patients3.stream()
                 .noneMatch(pat -> pat.getId().equals(3L)))
                 .isTrue(); // all patients except with id 3
+    }
+
+    @Transactional
+    @Test
+    public void testShouldFindByGender() {
+        // given
+        // use existing data from data.sql
+        // Patient Id, Gender
+        //      1       MALE
+        //      2       FEMALE
+        //      3       HELICOPTER
+        //      4       FEMALE
+        //      5       MALE
+        //      6       FEMALE
+
+        // when
+        final List<PatientEntity> patientsM = patientDao.findByGender(Gender.MALE); // should find 2
+        final List<PatientEntity> patientsF = patientDao.findByGender(Gender.FEMALE); // should find 3
+        final List<PatientEntity> patientsH = patientDao.findByGender(Gender.HELICOPTER); // should find 1
+        final List<PatientEntity> patientsO = patientDao.findByGender(Gender.OTHER); // should find 0
+
+        // then
+        assertThat(patientsM.size()).isEqualTo(2);
+        assertThat(patientsF.size()).isEqualTo(3);
+        assertThat(patientsH.size()).isEqualTo(1);
+        assertThat(patientsO.size()).isEqualTo(0);
+
+        assertThat(patientsM.get(0).getId()).isEqualTo(1L);
+        assertThat(patientsM.get(1).getId()).isEqualTo(5L);
+
+        assertThat(patientsF.get(0).getId()).isEqualTo(2L);
+        assertThat(patientsF.get(1).getId()).isEqualTo(4L);
+        assertThat(patientsF.get(2).getId()).isEqualTo(6L);
+
+        assertThat(patientsH.get(0).getId()).isEqualTo(3L);
     }
 }
