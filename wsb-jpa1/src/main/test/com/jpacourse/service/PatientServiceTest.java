@@ -91,4 +91,26 @@ public class PatientServiceTest
         assertThat(visitDao.findOne(18L)).isNull(); // all visits of deleted patient deleted
     }
 
+    @Transactional
+    @Test
+    public void testShouldFindAllPatientVisits() {
+        // given
+        // use existing data from data.sql
+        // Patient 1 has 4 visits as follows (doctor_id, visit_id): (1, 1), (2, 12), (2, 13), (3, 18)
+
+        // when
+        List<VisitEntity> visits = patientService.findVisitsOfPatient(1L);
+        // then
+        assertThat(visits.size()).isEqualTo(4);
+
+        assertThat(visits.get(0).getId()).isEqualTo(1L);
+        assertThat(visits.get(0).getDoctor().getId()).isEqualTo(1L);
+        assertThat(visits.get(1).getId()).isEqualTo(12L);
+        assertThat(visits.get(1).getDoctor().getId()).isEqualTo(2L);
+        assertThat(visits.get(2).getId()).isEqualTo(13L);
+        assertThat(visits.get(2).getDoctor().getId()).isEqualTo(2L);
+        assertThat(visits.get(3).getId()).isEqualTo(18L);
+        assertThat(visits.get(3).getDoctor().getId()).isEqualTo(3L);
+    }
+
 }
