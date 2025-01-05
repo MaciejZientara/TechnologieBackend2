@@ -6,6 +6,7 @@ import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.entity.DoctorEntity;
 import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
+import com.jpacourse.persistence.enums.Gender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -38,4 +39,28 @@ public class PatientDaoImpl  extends AbstractDao<PatientEntity, Long> implements
         patient.setVisits(result);
         update(patient);
     }
+
+    @Override
+    public List<PatientEntity> findByLastName(String lastName){
+        return entityManager.createQuery("select pat from PatientEntity pat " +
+                "where pat.lastName = :lastName",
+                PatientEntity.class).setParameter("lastName",lastName).getResultList();
+    }
+
+    @Override
+    public List<PatientEntity> findWithMoreVisits(long visitCount){ // visitCount w treści zadania X
+        return entityManager.createQuery("select pat from PatientEntity pat " +
+                "join pat.visits visit " +
+                "group by pat " +
+                "having count(visit) >= :visCount",
+                PatientEntity.class).setParameter("visCount",visitCount).getResultList();
+    }
+
+    @Override
+    public List<PatientEntity> findByGender(Gender g) {
+        return entityManager.createQuery("select pat from PatientEntity pat " +
+                "where pat.gender = :gender",
+                PatientEntity.class).setParameter("gender",g).getResultList();
+    }
+
 }
