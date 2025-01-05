@@ -59,4 +59,42 @@ public class PatientDaoTest
                 .isEqualTo(1);
 
     }
+
+    @Transactional
+    @Test
+    public void testShouldFindPatientsByLastName() {
+        // given
+        // use existing data from data.sql
+        // Patient Id, FirstName, LastName
+        //      1       Adam        Nowak
+        //      6      Magdalena    Nowak
+        //      2       Ewa         Kowalska
+        //      5       Jan         Kowalski
+
+        // when
+        final List<PatientEntity> patients1 = patientDao.findByLastName("Nowak"); // should find 2
+        final List<PatientEntity> patients2 = patientDao.findByLastName("Kowalska"); // should find 1
+        final List<PatientEntity> patients3 = patientDao.findByLastName("Kowalski"); // should find 1
+        final List<PatientEntity> patients4 = patientDao.findByLastName("Kowalsk"); // should find 0, only equals, no patterns
+        final List<PatientEntity> patients5 = patientDao.findByLastName("Kowalsk*"); // should find 0, only equals, no patterns
+
+        // then
+        assertThat(patients1.size()).isEqualTo(2);
+        assertThat(patients2.size()).isEqualTo(1);
+        assertThat(patients3.size()).isEqualTo(1);
+        assertThat(patients4.size()).isEqualTo(0);
+        assertThat(patients5.size()).isEqualTo(0);
+
+        assertThat(patients1.get(0).getId()).isEqualTo(1L);
+        assertThat(patients1.get(0).getFirstName()).isEqualTo("Adam");
+        assertThat(patients1.get(1).getId()).isEqualTo(6L);
+        assertThat(patients1.get(1).getFirstName()).isEqualTo("Magdalena");
+
+        assertThat(patients2.get(0).getId()).isEqualTo(2L);
+        assertThat(patients2.get(0).getFirstName()).isEqualTo("Ewa");
+
+        assertThat(patients3.get(0).getId()).isEqualTo(5L);
+        assertThat(patients3.get(0).getFirstName()).isEqualTo("Jan");
+    }
+
 }
