@@ -1,12 +1,12 @@
-insert into address (id, address_line1, address_line2, city, postal_code) values (1, 'ulica Dębowa', '12A', 'Warszawa', '00-001');
-insert into address (id, address_line1, address_line2, city, postal_code) values (2, 'ulica Lipowa', '34B', 'Kraków', '30-002');
-insert into address (id, address_line1, address_line2, city, postal_code) values (3, 'ulica Sosnowa', '7C', 'Poznań', '60-003');
-insert into address (id, address_line1, address_line2, city, postal_code) values (4, 'ulica Klonowa', '19', 'Gdańsk', '80-004');
-insert into address (id, address_line1, address_line2, city, postal_code) values (5, 'ulica Akacjowa', '5A', 'Wrocław', '50-005');
-insert into address (id, address_line1, address_line2, city, postal_code) values (6, 'ulica Wiśniowa', '22', 'Łódź', '90-006');
-insert into address (id, address_line1, address_line2, city, postal_code) values (7, 'ulica Kasztanowa', '33B', 'Szczecin', '70-007');
-insert into address (id, address_line1, address_line2, city, postal_code) values (8, 'ulica Świerkowa', '10', 'Bydgoszcz', '85-008');
-insert into address (id, address_line1, address_line2, city, postal_code) values (9, 'ulica Wierzbowa', '4D', 'Lublin', '20-009');
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (1, 'ulica Dębowa', '12A', 'Warszawa', '00-001', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (2, 'ulica Lipowa', '34B', 'Kraków', '30-002', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (3, 'ulica Sosnowa', '7C', 'Poznań', '60-003', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (4, 'ulica Klonowa', '19', 'Gdańsk', '80-004', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (5, 'ulica Akacjowa', '5A', 'Wrocław', '50-005', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (6, 'ulica Wiśniowa', '22', 'Łódź', '90-006', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (7, 'ulica Kasztanowa', '33B', 'Szczecin', '70-007', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (8, 'ulica Świerkowa', '10', 'Bydgoszcz', '85-008', 0);
+insert into address (id, address_line1, address_line2, city, postal_code, version) values (9, 'ulica Wierzbowa', '4D', 'Lublin', '20-009', 0);
 
 insert into doctor (id, doctor_number, email, first_name, last_name, specialization, telephone_number, address_id) values (1, 'DOC1001', 'john.smith@example.com', 'John', 'Smith', 'GP', '+48123456701', 1);
 insert into doctor (id, doctor_number, email, first_name, last_name, specialization, telephone_number, address_id) values (2, 'DOC1002', 'anna.brown@example.com', 'Anna', 'Brown', 'DERMATOLOGIST', '+48123456702', 2);

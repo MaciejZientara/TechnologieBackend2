@@ -32,6 +32,9 @@ public class AddressEntity {
 	@OneToOne(mappedBy = "address")
 	private PatientEntity patientResident;
 
+	@Version
+	public int version;
+
 	public Long getId() {
 		return id;
 	}

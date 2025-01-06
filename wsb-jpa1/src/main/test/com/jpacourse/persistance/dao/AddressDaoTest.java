@@ -2,6 +2,7 @@ package com.jpacourse.persistance.dao;
 
 import com.jpacourse.persistence.dao.AddressDao;
 import com.jpacourse.persistence.entity.AddressEntity;
+import com.jpacourse.persistence.entity.PatientEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,28 @@ public class AddressDaoTest
         assertThat(addressDao.count()).isEqualTo(entitiesNumBefore+1);
     }
 
+    @Test
+    public void testShouldCheckVersion() {
+        // given
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setAddressLine1("line1");
+        addressEntity.setAddressLine2("line2");
+        addressEntity.setCity("City1");
+        addressEntity.setPostalCode("66-666");
+
+        final AddressEntity saved = addressDao.save(addressEntity);
+
+        // assert state before update
+        assertThat(saved.version).isEqualTo(0L);
+
+        // when
+        saved.setCity("City2");
+        final AddressEntity updated = addressDao.update(saved);
+
+        // then
+        assertThat(updated.version).isEqualTo(1L);
+    }
+
     @Transactional
     @Test
     public void testShouldSaveAndRemoveAddress() {
@@ -75,6 +98,5 @@ public class AddressDaoTest
         final AddressEntity removed = addressDao.findOne(saved.getId());
         assertThat(removed).isNull();
     }
-
 
 }
