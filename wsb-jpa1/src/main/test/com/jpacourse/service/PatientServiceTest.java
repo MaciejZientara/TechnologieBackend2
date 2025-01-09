@@ -2,6 +2,7 @@ package com.jpacourse.service;
 
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.PatientsVisitTO;
 import com.jpacourse.persistence.dao.AddressDao;
 import com.jpacourse.persistence.dao.DoctorDao;
 import com.jpacourse.persistence.dao.PatientDao;
@@ -12,6 +13,7 @@ import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
 import com.jpacourse.persistence.enums.Gender;
 import com.jpacourse.persistence.enums.Specialization;
+import com.jpacourse.persistence.enums.TreatmentType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -97,20 +100,39 @@ public class PatientServiceTest
         // given
         // use existing data from data.sql
         // Patient 1 has 4 visits as follows (doctor_id, visit_id): (1, 1), (2, 12), (2, 13), (3, 18)
+        // Doctor data (id, firstName, lastName):
+        // 1, John, Smith
+        // 2, Anna, Brown
+        // 3, Peter, White
 
         // when
-        List<VisitEntity> visits = patientService.findVisitsOfPatient(1L);
+        List<PatientsVisitTO> visits = patientService.findVisitsOfPatient(1L);
         // then
         assertThat(visits.size()).isEqualTo(4);
 
-        assertThat(visits.get(0).getId()).isEqualTo(1L);
-        assertThat(visits.get(0).getDoctor().getId()).isEqualTo(1L);
-        assertThat(visits.get(1).getId()).isEqualTo(12L);
-        assertThat(visits.get(1).getDoctor().getId()).isEqualTo(2L);
-        assertThat(visits.get(2).getId()).isEqualTo(13L);
-        assertThat(visits.get(2).getDoctor().getId()).isEqualTo(2L);
-        assertThat(visits.get(3).getId()).isEqualTo(18L);
-        assertThat(visits.get(3).getDoctor().getId()).isEqualTo(3L);
+        // PatientVisitTO has following fields:
+        // time - visit date
+        // doctorFirstName
+        // doctorLastName
+        // type - list of TreatmentType enum
+
+        // Visit with id 1
+        assertThat(visits.get(0).getTime()).isEqualTo(LocalDateTime.parse("2024-12-05T09:00:00"));
+        assertThat(visits.get(0).getDoctorFirstName()).isEqualTo("John");
+        assertThat(visits.get(0).getDoctorLastName()).isEqualTo("Smith");
+        // Visit with id 12
+        assertThat(visits.get(1).getTime()).isEqualTo(LocalDateTime.parse("2024-12-05T14:30:00"));
+        assertThat(visits.get(1).getDoctorFirstName()).isEqualTo("Anna");
+        assertThat(visits.get(1).getDoctorLastName()).isEqualTo("Brown");
+        // Visit with id 13
+        assertThat(visits.get(2).getTime()).isEqualTo(LocalDateTime.parse("2024-12-05T15:00:00"));
+        assertThat(visits.get(2).getDoctorFirstName()).isEqualTo("Anna");
+        assertThat(visits.get(2).getDoctorLastName()).isEqualTo("Brown");
+        // Visit with id 18
+        assertThat(visits.get(3).getTime()).isEqualTo(LocalDateTime.parse("2024-12-06T10:00:00"));
+        assertThat(visits.get(3).getDoctorFirstName()).isEqualTo("Peter");
+        assertThat(visits.get(3).getDoctorLastName()).isEqualTo("White");
+
     }
 
 }

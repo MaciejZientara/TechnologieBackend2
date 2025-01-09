@@ -1,6 +1,7 @@
 package com.jpacourse.service.impl;
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.PatientsVisitTO;
 import com.jpacourse.mapper.PatientMapper;
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.entity.PatientEntity;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.jpacourse.mapper.PatientsVisitsMapper.mapListToTO;
 
 @Service
 @Transactional
@@ -36,8 +39,8 @@ public class PatientServiceImpl implements PatientService
     }
 
     @Override
-    public List<VisitEntity> findVisitsOfPatient(final Long id){
+    public List<PatientsVisitTO> findVisitsOfPatient(final Long id){
         final PatientEntity entity = patientDao.findOne(id);
-        return entity.getVisits();
+        return mapListToTO(entity.getVisits());
     }
 }
